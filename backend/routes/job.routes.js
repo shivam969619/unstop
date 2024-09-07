@@ -9,7 +9,7 @@ import {
 } from "../controllers/job.controller.js";
 const router = express.Router();
 router.route("/postjob").post(isAuthenticated, postjob);
-router.route("/getalljob").get(isAuthenticated, getAllJobs);
+router.route("/getalljob").get( getAllJobs);
 router.route("/getadminjob").get(isAuthenticated, getAdminJobs);
 router.route("/get/:id").get(isAuthenticated, getJobById);
 
