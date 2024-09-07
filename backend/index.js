@@ -16,6 +16,7 @@ const corsOptions = {
   origin: "https://unstop-2.onrender.com/",
   credentials: true,
 };
+app.options("*", cors(corsOptions));
 app.get("/home", (req, res) => {
   return res.status(200).json({
     message: "i am coming from backend",
