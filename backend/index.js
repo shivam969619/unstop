@@ -17,6 +17,7 @@ const corsOptions = {
   credentials: true,
 };
 app.options("*", cors(corsOptions));
+app.use(cors(corsOptions));
 app.get("/home", (req, res) => {
   return res.status(200).json({
     message: "i am coming from backend",
@@ -29,7 +30,7 @@ app.get("/", (req, res) => {
     success: "true",
   });
 });
-app.use(cors(corsOptions));
+
 const PORT = process.env.PORT || 3000;
 
 app.use("/api/v1/user", userRoute);
