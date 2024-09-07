@@ -14,7 +14,7 @@ const app = express();
 // CORS options, removing the trailing slash in origin
 const corsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = ["https://unstop-2.onrender.com"];
+    const allowedOrigins = ["https://unstop-2.onrender.com","http://localhost:5173"];
     if (allowedOrigins.includes(origin) || !origin) { // !origin allows non-browser clients
       callback(null, true);
     } else {
