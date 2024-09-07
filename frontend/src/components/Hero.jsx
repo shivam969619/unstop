@@ -15,8 +15,9 @@ const Hero = () => {
             Get Your <span className="text-[#6a38c2]">Dream Jobs</span>
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-            ducimus, eveniet odio labore aliquam nesciunt!
+           Discover a wide range of job openings that match your skills and interests, from software development to data analysis, and more. Our platform features a user-friendly interface that makes it easy to search and apply for positions, track your applications, and stay updated with the latest tech job openings.
+
+Whether you’re a seasoned coder or just starting your tech career, Unstop provides the resources and tools you need to advance. Access career advice, industry insights, and connect with professionals who share your passion for technology.
           </p>
           <div className="flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
             <input
