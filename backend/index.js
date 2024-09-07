@@ -13,14 +13,22 @@ const app = express();
 
 // CORS options, removing the trailing slash in origin
 const corsOptions = {
-  origin: "https://unstop-2.onrender.com", // no trailing slash
+  origin: (origin, callback) => {
+    const allowedOrigins = ["https://unstop-2.onrender.com"];
+    if (allowedOrigins.includes(origin) || !origin) { // !origin allows non-browser clients
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,  // Allow credentials (cookies, etc.)
-  optionsSuccessStatus: 200, // Legacy browsers support
+  optionsSuccessStatus: 200,  // For legacy browser support
 };
 
-// Apply CORS before any routes or other middleware
+// Apply CORS before any routes or middleware
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));  // Allow preflight requests for all routes
+app.options("*", cors(corsOptions));  // Preflight requests for all routes
+ // Allow preflight requests for all routes
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
