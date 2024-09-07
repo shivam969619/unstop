@@ -8,26 +8,35 @@ import userRoute from "./routes/user.route.js";
 import companyRoutes from "./routes/company.route.js";
 import jobRoutes from "./routes/job.routes.js";
 import applicationRoutes from "./routes/application.routes.js";
+
 const app = express();
+
+// CORS options, removing the trailing slash in origin
+const corsOptions = {
+  origin: "https://unstop-2.onrender.com", // no trailing slash
+  credentials: true,  // Allow credentials (cookies, etc.)
+  optionsSuccessStatus: 200, // Legacy browsers support
+};
+
+// Apply CORS before any routes or other middleware
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));  // Allow preflight requests for all routes
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-const corsOptions = {
-  origin: "https://unstop-2.onrender.com/",
-  credentials: true,
-};
-app.options("*", cors(corsOptions));
-app.use(cors(corsOptions));
+
 app.get("/home", (req, res) => {
   return res.status(200).json({
-    message: "i am coming from backend",
-    success: "true",
+    message: "I am coming from backend",
+    success: true,
   });
 });
+
 app.get("/", (req, res) => {
   return res.status(200).json({
-    message: "i am coming from backend",
-    success: "true",
+    message: "I am coming from backend",
+    success: true,
   });
 });
 
@@ -37,6 +46,7 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoutes);
 app.use("/api/v1/job", jobRoutes);
 app.use("/api/v1/application", applicationRoutes);
+
 app.listen(PORT, () => {
   connectDB();
   console.log(`Server is running at port ${PORT}`);
