@@ -92,11 +92,12 @@ export const login = async (req, res) => {
     };
     return res
       .status(200)
-      .cookie("token", token, {
-        maxAge: 1 * 24 * 60 * 60 * 1000,
-        httpsOnly: true,
-        sameSite: "strict",
-      })
+     .cookie("token", token, {
+    maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day in milliseconds
+    httpOnly: true,                  // Use httpOnly to prevent JavaScript access
+    secure: process.env.NODE_ENV === "production", // Secure only in production
+    sameSite: process.env.NODE_ENV === "production" ? "lax" : "strict", // Adjust for cross-origin needs
+  })
       .json({
         message: `Welcome to Jobhunt ${user.fullname}`,
         user,
