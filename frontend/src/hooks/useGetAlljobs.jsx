@@ -8,11 +8,12 @@ const useGetAlljobs = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchAllJobs = async () => {
+      console.log("logging cookie before tryvatch",document.cookie);
       try {
         const res = await axios.get(`${JOB_API_END_POINT}/getalljob`, {
           withCredentials: true,
         });
-        console.log(document.cookie);
+        console.log("logging cookie after trycatch",document.cookie);
         if (res.data.success) {
           console.log(res.data);
           dispatch(setAllJobs(res.data.jobs));
