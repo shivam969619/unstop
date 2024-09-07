@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
   });
 });
 app.use(cors(corsOptions));
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoutes);
